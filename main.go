@@ -32,7 +32,7 @@ func main() {
 	flag.Parse()
 
 	err := providerserver.Serve(context.Background(), provider.NewFactory(version), providerserver.ServeOpts{
-		Address: "registry.terraform.io/example",
+		Address: "registry.terraform.io/example/example",
 		Debug:   debug,
 	})
 

@@ -22,13 +22,12 @@ vet:
 test:
 	go test -parallel=4 ./...
 
-# Set ACC_TEST_NAME to name of test in cli
-testacc: spincontainer
-	TF_ACC=1 go test ./... -timeout 10m --run ${ACC_TEST_NAME} -v -p 4 --count=1
+testacc:
+	TF_ACC=1 go test ./... -timeout 10m -v -p 4 --count=1
 
 devchecknotest: install golangcilint generate tfproviderlint tflint terrafmtlint importfmtlint
 
-devcheck: devchecknotest kaboom testacc
+devcheck: devchecknotest testacc
 
 golangcilint:
 	go run github.com/golangci/golangci-lint/cmd/golangci-lint run --timeout 5m ./internal/...
